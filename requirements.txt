@@ -9,3 +9,4 @@ httpx
 python-multipart
 email-validator
 aiosqlite
+psycopg2-binary
