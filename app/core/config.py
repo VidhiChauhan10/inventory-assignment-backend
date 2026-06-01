@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings
-from typing import Optional
+from typing import List
 
 
 class Settings(BaseSettings):
@@ -16,11 +16,14 @@ class Settings(BaseSettings):
     APP_VERSION: str = "1.0.0"
     DEBUG: bool = False
 
-    # CORS
-    ALLOWED_ORIGINS: list = [
+    # CORS — override via ALLOWED_ORIGINS env var (comma-separated) on Render
+    ALLOWED_ORIGINS: List[str] = [
         "http://localhost:3000",
         "http://localhost:5173",
         "http://frontend:3000",
+        # Render deployments
+        "https://inventory-assignment-frontend.onrender.com",
+        "https://inventory-assignment-backend.onrender.com",
     ]
 
     class Config:
@@ -30,3 +33,4 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
